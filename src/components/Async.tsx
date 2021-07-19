@@ -4,7 +4,7 @@ import Loader from './Loader';
 
 const sleep = (m: number) => new Promise((r) => setTimeout(r, m));
 
-export default function asyncComponent(importComponent: any) {
+export default function asyncComponent(importComponent: any): any {
   class AsyncComponent extends React.Component {
     constructor(props: ComponentProps<any>) {
       super(props);

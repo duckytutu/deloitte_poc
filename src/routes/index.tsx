@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter as Router, Redirect, Switch } from 'react-router-dom';
 import '../App.css';
 import PublicRoute from './PublicRoute';
