@@ -12,20 +12,23 @@ import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import useCustomers from '../../hooks/useCustomer';
-import { Link, useHistory, useRouteMatch } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 
 const CustomerList = () => {
   const {
     list: { data },
     getList,
+    deleteCustomer,
   } = useCustomers();
-  const history = useHistory();
   const { url } = useRouteMatch();
-  const handleDelete = (id: number) => {}; // eslint-disable-line
 
   useEffect(() => {
     getList();
   }, []);
+
+  const handleDelete = (id: number) => {
+    deleteCustomer(id);
+  };
 
   const columns: ITableColumn[] = [
     { id: 'id', label: 'ID' },
@@ -44,6 +47,7 @@ const CustomerList = () => {
     <Box mt={5} width="100%">
       {data?.length > 0 ? (
         <Grid item xs={12} style={{ maxWidth: '100%' }}>
+          <Link to={`${url}/create`}>Create</Link>
           <Table style={{ width: '100%' }}>
             <TableHead>
               <TableRow>
@@ -76,12 +80,7 @@ const CustomerList = () => {
                         <EditIcon />
                       </IconButton>
                     </Link>
-                    <IconButton
-                      color="primary"
-                      size="small"
-                      aria-label="edit"
-                      onClick={() => handleDelete(customer.id)}
-                    >
+                    <IconButton color="primary" size="small" aria-label="edit">
                       <DeleteIcon />
                     </IconButton>
                   </TableCell>

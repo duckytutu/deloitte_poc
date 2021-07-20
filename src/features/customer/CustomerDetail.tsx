@@ -7,11 +7,15 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import { useEffect } from 'react';
 import Table from '@material-ui/core/Table';
-import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
 const CustomerDetail = () => {
   const { id }: any = useParams();
-  const { current: data, getDetail } = useCustomers(id);
+  const { current: data, getDetail, deleteCustomer } = useCustomers(id);
+
+  const handleDelete = () => {
+    deleteCustomer(id);
+  };
 
   useEffect(() => {
     getDetail(Number(id));
@@ -43,6 +47,7 @@ const CustomerDetail = () => {
               <TableCell>{data.income}</TableCell>
             </TableRow>
           </TableBody>
+          <Button onClick={() => handleDelete}>Delete</Button>
         </Table>
       ) : (
         'Invalid customer'

@@ -1,8 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getAllCustomer, getCustomerById } from '../../apis/customerApis';
+import {
+  deleteCustomerById,
+  getAllCustomer,
+  getCustomerById,
+} from '../../apis/customerApis';
 import { ICustomer } from '../../features/customer/types/Customer';
 
-export interface CounterState {
+export interface CustomerState {
   list: {
     data: ICustomer[];
     pageOptions: any;
@@ -10,7 +14,7 @@ export interface CounterState {
   current: ICustomer | null;
 }
 
-const initialState: CounterState = {
+const initialState: CustomerState = {
   list: {
     data: [],
     pageOptions: {},
@@ -31,6 +35,13 @@ export const getCustomerDetail = createAsyncThunk(
   async (id: number) => {
     const data: any = await getCustomerById(id);
     return data;
+  }
+);
+
+export const deleteCustomer = createAsyncThunk(
+  'customer/deleteCustomer',
+  async (id: number) => {
+    await deleteCustomerById(id);
   }
 );
 
