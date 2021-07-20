@@ -18,7 +18,7 @@ const CustomerDetail = () => {
   };
 
   useEffect(() => {
-    getDetail(Number(id));
+    useCustomers(Number(id)).getDetail();
   }, []);
 
   return (
