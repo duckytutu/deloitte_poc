@@ -1,5 +1,5 @@
-import { Route } from 'react-router-dom';
 import React, { memo } from 'react';
+import { Route } from 'react-router-dom';
 
 const PublicRoute = ({ component: Component, layout: Layout, ...rest }: any) =>
   Layout ? (

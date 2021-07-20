@@ -95,6 +95,15 @@ const overrides = {
       padding: '0 5px',
     },
   },
+  MuiTableCell: {
+    head: {
+      backgroundColor: '#DEE8FF',
+      color: '#4F4B66',
+    },
+    body: {
+      fontSize: 14,
+    },
+  },
 };
 
 export default overrides;

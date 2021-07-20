@@ -1,8 +1,9 @@
-import IRoute from '../models/Route';
+import IRoute from './Route';
 import async from '../components/Async';
+import { AppLayout } from '../layouts';
+import Customer from '../features/customer';
 
-const Page404 = async(() => import('../pages/auth/Page404'));
-const HomePage = async(() => import('../pages/counter/Counter'));
+const Page404 = async(() => import('../features/auth/Page404'));
 
 const routes: IRoute[] = [
   {
@@ -12,10 +13,11 @@ const routes: IRoute[] = [
     children: null,
   },
   {
-    id: 'HomePage',
+    id: 'Customer',
     path: '/',
-    component: HomePage,
+    component: Customer,
     children: null,
+    layout: AppLayout,
   },
 ];
 
