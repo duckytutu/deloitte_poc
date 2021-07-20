@@ -12,13 +12,15 @@ import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import useCustomers from '../../hooks/useCustomer';
+import { Link, useHistory, useRouteMatch } from 'react-router-dom';
 
 const CustomerList = () => {
   const {
     list: { data },
     getList,
   } = useCustomers();
-  const handleShowDetail = (id: number) => {}; // eslint-disable-line
+  const history = useHistory();
+  const { url } = useRouteMatch();
   const handleDelete = (id: number) => {}; // eslint-disable-line
 
   useEffect(() => {
@@ -65,14 +67,15 @@ const CustomerList = () => {
                   <TableCell>{customer.occupation}</TableCell>
                   <TableCell>{customer.income}</TableCell>
                   <TableCell>
-                    <IconButton
-                      color="primary"
-                      size="small"
-                      aria-label="edit"
-                      onClick={() => handleShowDetail(customer)}
-                    >
-                      <EditIcon />
-                    </IconButton>
+                    <Link to={`${url}/${customer.id}`}>
+                      <IconButton
+                        color="primary"
+                        size="small"
+                        aria-label="edit"
+                      >
+                        <EditIcon />
+                      </IconButton>
+                    </Link>
                     <IconButton
                       color="primary"
                       size="small"

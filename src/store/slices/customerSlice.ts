@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getAllCustomer } from '../../apis/customerApis';
+import { getAllCustomer, getCustomerById } from '../../apis/customerApis';
 import { ICustomer } from '../../features/customer/types/Customer';
 
 export interface CounterState {
@@ -26,6 +26,14 @@ export const getCustomerList = createAsyncThunk(
   }
 );
 
+export const getCustomerDetail = createAsyncThunk(
+  'customer/getCustomerDetail',
+  async (id: number) => {
+    const data: any = await getCustomerById(id);
+    return data;
+  }
+);
+
 export const customerSlice = createSlice({
   name: 'customer',
   initialState,
@@ -40,6 +48,9 @@ export const customerSlice = createSlice({
   extraReducers: {
     [getCustomerList.fulfilled as any]: (state, { payload }) => {
       state.list.data = payload;
+    },
+    [getCustomerDetail.fulfilled as any]: (state, { payload }) => {
+      state.current = payload;
     },
   },
 });

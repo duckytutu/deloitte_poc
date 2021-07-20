@@ -3,23 +3,36 @@ import { ICustomer } from '../features/customer/types/Customer';
 
 const API_PATH = 'customer/';
 
+const mockData = [
+  {
+    id: 1,
+    name: 'SmartOSC',
+    address: 'Hanoi',
+    occupation: 'Dev',
+    income: 100000,
+  },
+  {
+    id: 2,
+    name: 'Tung Nguyen',
+    address: 'Hanoi',
+    occupation: 'Dev',
+    income: 10000,
+  },
+];
+
 export const getAllCustomer = () => {
   return new Promise((resolve, reject) => {
-    resolve([
-      {
-        id: 1,
-        name: 'SmartOSC',
-        address: 'Hanoi',
-        occupation: 'Dev',
-        income: 100000,
-      },
-    ]);
+    resolve(mockData);
   });
-  // httpClient.get(API_PATH)
+  // return httpClient.get(API_PATH);
 };
 
-export const getCustomerById = (id: number) =>
-  httpClient.get(`${API_PATH}${id}`);
+export const getCustomerById = (id: number) => {
+  return new Promise((resolve, reject) => {
+    resolve(mockData.find((customer) => customer.id === id));
+  });
+  // httpClient.get(`${API_PATH}${id}`);
+};
 
 export const createCustomer = (data: ICustomer) =>
   httpClient.post(API_PATH, data);

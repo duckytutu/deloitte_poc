@@ -8,4 +8,5 @@ export default interface IRoute {
   component?: ComponentType;
   children?: IRoute[] | null;
   layout?: ComponentType;
+  exact?: boolean;
 }

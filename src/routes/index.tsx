@@ -1,7 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Redirect, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from 'react-router-dom';
 import '../App.css';
-import PublicRoute from './PublicRoute';
 import IRoute from './Route';
 import routes from './routeList';
 
@@ -10,15 +14,14 @@ const Routes = () => {
     <Router>
       <Switch>
         {routes.map((route: IRoute) => (
-          <PublicRoute
+          <Route
             key={route.path}
             component={route.component}
-            layout={route.layout}
             path={route.path}
-            exact
+            exact={route.exact || true}
           />
         ))}
-        <Redirect to="/auth/404" />
+        {/* <Redirect to="/auth/404" /> */}
       </Switch>
     </Router>
   );

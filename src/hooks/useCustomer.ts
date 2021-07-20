@@ -1,14 +1,19 @@
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '.';
-import { getCustomerList } from '../store/slices/customerSlice';
+import {
+  getCustomerDetail,
+  getCustomerList,
+} from '../store/slices/customerSlice';
 
-const useCustomers = () => {
+const useCustomers = (id?: number) => {
   const { list, current } = useAppSelector((state: any) => state.customer);
   const dispatch = useAppDispatch();
 
   const getList = () => dispatch(getCustomerList());
 
-  return { list, current, getList };
+  const getDetail = (id: number) => dispatch(getCustomerDetail(id));
+
+  return { list, current, getList, getDetail };
 };
 
 export default useCustomers;

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const httpClient = axios.create({
-  baseURL: process.env.API_URI,
+  baseURL: process.env.REACT_APP_API_URI,
 });
 
 export default httpClient;
