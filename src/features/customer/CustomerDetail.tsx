@@ -20,33 +20,30 @@ const CustomerDetail = () => {
   return (
     <Box mt={5}>
       {data ? (
-        <>
-          <Typography>Customer Detail</Typography>
-          <Table>
-            <TableBody>
-              <TableRow>
-                <TableCell>Id</TableCell>
-                <TableCell>{data.id}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell>{data.name}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>Address</TableCell>
-                <TableCell>{data.address}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>Occupation</TableCell>
-                <TableCell>{data.occupation}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>Income</TableCell>
-                <TableCell>{data.income}</TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </>
+        <Table>
+          <TableBody>
+            <TableRow>
+              <TableCell>Id</TableCell>
+              <TableCell>{data.id}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Name</TableCell>
+              <TableCell>{data.name}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Address</TableCell>
+              <TableCell>{data.address}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Occupation</TableCell>
+              <TableCell>{data.occupation}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Income</TableCell>
+              <TableCell>{data.income}</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
       ) : (
         'Invalid customer'
       )}

@@ -6,22 +6,20 @@ import {
   Switch,
 } from 'react-router-dom';
 import '../App.css';
-import IRoute from './Route';
-import routes from './routeList';
+import Home from '../features/home/Home';
+import Customer from '../features/customer';
 
 const Routes = () => {
   return (
     <Router>
       <Switch>
-        {routes.map((route: IRoute) => (
-          <Route
-            key={route.path}
-            component={route.component}
-            path={route.path}
-            exact={route.exact || true}
-          />
-        ))}
-        {/* <Redirect to="/auth/404" /> */}
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/customers">
+          <Customer />
+        </Route>
+        <Redirect to="/auth/404" />
       </Switch>
     </Router>
   );

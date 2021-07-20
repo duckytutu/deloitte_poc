@@ -18,6 +18,20 @@ const mockData = [
     occupation: 'Dev',
     income: 10000,
   },
+  {
+    id: 3,
+    name: 'SmartOSC Tung',
+    address: 'HCMC',
+    occupation: 'Dev',
+    income: 1000000,
+  },
+  {
+    id: 4,
+    name: 'Tung Do',
+    address: 'Hanoi',
+    occupation: 'Dev',
+    income: 30000,
+  },
 ];
 
 export const getAllCustomer = () => {

@@ -11,8 +11,8 @@ const CustomerPage = () => {
     <>
       <Typography variant="h3">Customer Management</Typography>
       <Switch>
-        {/* <Route exact path={path} component={CustomerList} /> */}
-        <Route path={`${path}/:id`} component={CustomerDetail} />
+        <Route exact path={path} component={CustomerList} />
+        <Route exact path={`${path}/:id`} component={CustomerDetail} />
       </Switch>
     </>
   );
