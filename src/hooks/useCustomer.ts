@@ -18,7 +18,7 @@ const useCustomers = (id?: number) => {
       setLoading(false);
     }
   };
-  const getDetail = () => {
+  const getDetail = async () => {
     if (!id) return;
     setLoading(true);
     try {
@@ -27,7 +27,8 @@ const useCustomers = (id?: number) => {
       setLoading(false);
     }
   };
-  const deleteCustomer: any = (customerId?: number) => {
+
+  const deleteCustomer: any = async (customerId?: number) => {
     if (customerId || id) {
       setLoading(true);
       try {

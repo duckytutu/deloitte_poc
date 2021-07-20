@@ -7,25 +7,19 @@ import {
 import { ICustomer } from '../../features/customer/types/Customer';
 
 export interface CustomerState {
-  list: {
-    data: ICustomer[];
-    pageOptions: any;
-  };
+  list: ICustomer[];
   current: ICustomer | null;
 }
 
 const initialState: CustomerState = {
-  list: {
-    data: [],
-    pageOptions: {},
-  },
+  list: [],
   current: null,
 };
 
 export const getCustomerList = createAsyncThunk(
   'customer/getCustomerList',
   async () => {
-    const data: any = await getAllCustomer();
+    const { data }: any = await getAllCustomer();
     return data;
   }
 );
@@ -33,7 +27,7 @@ export const getCustomerList = createAsyncThunk(
 export const getCustomerDetail = createAsyncThunk(
   'customer/getCustomerDetail',
   async (id: number) => {
-    const data: any = await getCustomerById(id);
+    const { data }: any = await getCustomerById(id);
     return data;
   }
 );
@@ -58,7 +52,7 @@ export const customerSlice = createSlice({
   },
   extraReducers: {
     [getCustomerList.fulfilled as any]: (state, { payload }) => {
-      state.list.data = payload;
+      state.list = payload;
     },
     [getCustomerDetail.fulfilled as any]: (state, { payload }) => {
       state.current = payload;

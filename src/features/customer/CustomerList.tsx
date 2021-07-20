@@ -15,11 +15,7 @@ import useCustomers from '../../hooks/useCustomer';
 import { Link, useRouteMatch } from 'react-router-dom';
 
 const CustomerList = () => {
-  const {
-    list: { data },
-    getList,
-    deleteCustomer,
-  } = useCustomers();
+  const { list, getList, deleteCustomer } = useCustomers();
   const { url } = useRouteMatch();
 
   useEffect(() => {
@@ -45,7 +41,7 @@ const CustomerList = () => {
 
   return (
     <Box mt={5} width="100%">
-      {data?.length > 0 ? (
+      {list?.length > 0 ? (
         <Grid item xs={12} style={{ maxWidth: '100%' }}>
           <Link to={`${url}/create`}>Create</Link>
           <Table style={{ width: '100%' }}>
@@ -63,7 +59,7 @@ const CustomerList = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data.map((customer: any) => (
+              {list.map((customer: any) => (
                 <TableRow key={customer.id}>
                   <TableCell>{customer.id}</TableCell>
                   <TableCell>{customer.name}</TableCell>

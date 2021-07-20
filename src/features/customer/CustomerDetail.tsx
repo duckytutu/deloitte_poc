@@ -18,39 +18,48 @@ const CustomerDetail = () => {
   };
 
   useEffect(() => {
-    getDetail(Number(id));
+    getDetail();
   }, []);
 
   return (
-    <Box mt={5}>
+    <Box mt={5} width="50%" ml="auto" mr="auto">
       {data ? (
-        <Table>
-          <TableBody>
-            <TableRow>
-              <TableCell>Id</TableCell>
-              <TableCell>{data.id}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Name</TableCell>
-              <TableCell>{data.name}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Address</TableCell>
-              <TableCell>{data.address}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Occupation</TableCell>
-              <TableCell>{data.occupation}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Income</TableCell>
-              <TableCell>{data.income}</TableCell>
-            </TableRow>
-          </TableBody>
-          <Button onClick={() => handleDelete}>Delete</Button>
-        </Table>
+        <>
+          <Table>
+            <TableBody>
+              <TableRow>
+                <TableCell>Id</TableCell>
+                <TableCell>{data.id}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Name</TableCell>
+                <TableCell>{data.name}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Address</TableCell>
+                <TableCell>{data.address}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Occupation</TableCell>
+                <TableCell>{data.occupation}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Income</TableCell>
+                <TableCell>{data.income}</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+          <Button
+            type="button"
+            variant="contained"
+            color="secondary"
+            onClick={handleDelete}
+          >
+            Delete
+          </Button>
+        </>
       ) : (
-        'Invalid customer'
+        'Customer not found'
       )}
     </Box>
   );
