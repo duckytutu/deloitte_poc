@@ -1,8 +1,9 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useFormik } from 'formik';
-import { Box, Button, TextField, Typography } from '@material-ui/core';
+import { Box, Button, TextField } from '@material-ui/core';
 import { ICustomer } from '../customer/types/Customer';
 import * as Yup from 'yup';
+import { useHistory } from 'react-router-dom';
 
 const CustomerForm = ({
   customer,
@@ -11,6 +12,7 @@ const CustomerForm = ({
   customer?: ICustomer;
   onSubmit: (data: ICustomer) => void | Promise<void>;
 }) => {
+  const history = useHistory();
   const initialValues = customer
     ? { ...customer }
     : { name: '', address: '', occupation: '', income: 0 };
@@ -23,10 +25,14 @@ const CustomerForm = ({
       occupation: Yup.string().required('Occupation is required'),
       income: Yup.number().required('Income is required'),
     }),
-    onSubmit: (values) => {
+    onSubmit: (values: any) => {
       onSubmit(values);
     },
   });
+
+  const handleCancel = () => {
+    history.goBack();
+  };
 
   return (
     <>
@@ -91,8 +97,13 @@ const CustomerForm = ({
           />
         </Box>
         <Box mt={4}>
-          <Button variant="contained" color="primary" type="submit">
-            Save
+          <Box component="div" mr={2} display="inline">
+            <Button variant="contained" color="primary" type="submit">
+              Save
+            </Button>
+          </Box>
+          <Button variant="contained" color="primary" onClick={handleCancel}>
+            Cancel
           </Button>
         </Box>
       </form>

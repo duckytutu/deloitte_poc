@@ -23,4 +23,4 @@ const CustomerCreate = () => {
   );
 };
 
-export default CustomerCreate;
+export default React.memo(CustomerCreate);

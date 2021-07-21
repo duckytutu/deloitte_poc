@@ -28,4 +28,4 @@ const CustomerEdit = () => {
   );
 };
 
-export default CustomerEdit;
+export default React.memo(CustomerEdit);

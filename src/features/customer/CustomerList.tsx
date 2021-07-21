@@ -49,7 +49,7 @@ const CustomerList = () => {
   ];
 
   return (
-    <Box mt={5} width="50%" ml="auto" mr="auto">
+    <Box>
       <Grid item xs={12} style={{ maxWidth: '100%' }}>
         <Box display="flex" alignItems="center" justifyContent="space-between">
           <Typography variant="subtitle1">Customer List</Typography>
@@ -120,4 +120,4 @@ const CustomerList = () => {
   );
 };
 
-export default CustomerList;
+export default React.memo(CustomerList);

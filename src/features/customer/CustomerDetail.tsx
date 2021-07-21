@@ -60,7 +60,6 @@ const CustomerDetail = () => {
           <Box mt={4}>
             <Box component="div" mr={2} display="inline">
               <Button
-                className="mr-2"
                 type="button"
                 variant="contained"
                 color="secondary"
@@ -86,4 +85,4 @@ const CustomerDetail = () => {
   );
 };
 
-export default CustomerDetail;
+export default React.memo(CustomerDetail);
