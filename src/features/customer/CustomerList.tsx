@@ -121,4 +121,4 @@ const CustomerList = () => {
   );
 };
 
-export default React.memo(CustomerList);
+export default CustomerList;

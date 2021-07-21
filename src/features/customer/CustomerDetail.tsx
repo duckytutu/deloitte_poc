@@ -83,4 +83,4 @@ const CustomerDetail = () => {
   );
 };
 
-export default React.memo(CustomerDetail);
+export default CustomerDetail;
