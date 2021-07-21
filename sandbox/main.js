@@ -8,16 +8,16 @@ state.customers = [
   },
 ];
 
-Sandbox.define('/rest/customers', 'OPTIONS', function (req, res) {
+Sandbox.define('/rest/customer', 'OPTIONS', function (req, res) {
   res.set('Access-Control-Allow-Origin', '*');
 });
 
-Sandbox.define('/rest/customers', 'GET', function (req, res) {
+Sandbox.define('/rest/customer', 'GET', function (req, res) {
   res.set('Access-Control-Allow-Origin', '*');
   res.send(state.customers);
 });
 
-Sandbox.define('/rest/customers', 'POST', function (req, res) {
+Sandbox.define('/rest/customer', 'POST', function (req, res) {
   res.set('Access-Control-Allow-Origin', '*');
   var newCustomer = req.body;
   if (!state.customers.length) {
@@ -33,7 +33,7 @@ Sandbox.define('/rest/customers', 'POST', function (req, res) {
   res.send(newCustomer);
 });
 
-Sandbox.define('/rest/customers/{id}', 'PUT', function (req, res) {
+Sandbox.define('/rest/customer/{id}', 'PUT', function (req, res) {
   res.set('Access-Control-Allow-Origin', '*');
   var newList = state.customers.map(function (customer) {
     if (customer.id !== parseInt(req.params.id)) return customer;
@@ -45,11 +45,11 @@ Sandbox.define('/rest/customers/{id}', 'PUT', function (req, res) {
   res.send(newList);
 });
 
-Sandbox.define('/rest/customers/{id}', 'OPTIONS', function (req, res) {
+Sandbox.define('/rest/customer/{id}', 'OPTIONS', function (req, res) {
   res.set('Access-Control-Allow-Origin', '*');
 });
 
-Sandbox.define('/rest/customers/{id}', 'GET', function (req, res) {
+Sandbox.define('/rest/customer/{id}', 'GET', function (req, res) {
   res.set('Access-Control-Allow-Origin', '*');
 
   var list = state.customers;
@@ -60,7 +60,7 @@ Sandbox.define('/rest/customers/{id}', 'GET', function (req, res) {
   res.send(selectedCustomer[0]);
 });
 
-Sandbox.define('/rest/customers/{id}', 'DELETE', function (req, res) {
+Sandbox.define('/rest/customer/{id}', 'DELETE', function (req, res) {
   res.set('Access-Control-Allow-Origin', '*');
   var newList = state.customers.filter(function (customer) {
     return customer.id !== parseInt(req.params.id);
