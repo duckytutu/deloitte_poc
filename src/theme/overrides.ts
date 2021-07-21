@@ -82,6 +82,16 @@ const overrides = {
       padding: 12.82,
     },
   },
+  MuiFormControl: {
+    root: {
+      width: '100%',
+    },
+  },
+  MuiTypography: {
+    h3: {
+      textAlign: 'center',
+    },
+  },
   MuiInputLabel: {
     outlined: {
       transform: 'translate(10px, 15px) scale(1)',
@@ -99,9 +109,11 @@ const overrides = {
     head: {
       backgroundColor: '#DEE8FF',
       color: '#4F4B66',
+      border: '1px solid #ccc',
     },
     body: {
       fontSize: 14,
+      border: '1px solid #ccc',
     },
   },
 };
