@@ -1,7 +1,7 @@
 import httpClient from '.';
 import { ICustomer } from '../features/customer/types/Customer';
 
-const API_PATH = 'customers';
+const API_PATH = 'customer';
 
 export const getAll = () => httpClient.get(API_PATH);
 

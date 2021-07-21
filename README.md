@@ -6,7 +6,7 @@ In the project directory, you can run:
 
 ### `cp .env.example .env`
 
-### `docker-compose run app npm install`
+### `docker-compose run --rm app npm install`
 
 ### `docker-compose up`
 

@@ -1,6 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 .idea
+.vscode
+
+sandbox/.oracle_jre_usage
 
 # dependencies
 /node_modules

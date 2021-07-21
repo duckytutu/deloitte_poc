@@ -9,4 +9,4 @@ services:
     ports:
       - '80:80'
     environment:
-      - REACT_APP_API_URI=http://localhost:8082/rest/
+      - REACT_APP_API_URI=http://10.83.30.52:8088/rest/

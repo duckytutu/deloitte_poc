@@ -35,8 +35,12 @@ Sandbox.define('/rest/customer', 'POST', function (req, res) {
 
 Sandbox.define('/rest/customer/{id}', 'PUT', function (req, res) {
   res.set('Access-Control-Allow-Origin', '*');
+  var customerId = parseInt(req.params.id);
   var newList = state.customers.map(function (customer) {
-    if (customer.id !== parseInt(req.params.id)) return customer;
+    if (customer.id !== customerId) return customer;
+    var newCustomer = req.body;
+    newCustomer.id = customerId;
+
     return req.body;
   });
 
