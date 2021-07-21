@@ -33,10 +33,10 @@ Sandbox.define('/rest/customers', 'POST', function (req, res) {
   res.send(newCustomer);
 });
 
-Sandbox.define('/rest/customers', 'PUT', function (req, res) {
+Sandbox.define('/rest/customers/{id}', 'PUT', function (req, res) {
   res.set('Access-Control-Allow-Origin', '*');
   var newList = state.customers.map(function (customer) {
-    if (customer.id !== req.body.id) return customer;
+    if (customer.id !== parseInt(req.params.id)) return customer;
     return req.body;
   });
 
