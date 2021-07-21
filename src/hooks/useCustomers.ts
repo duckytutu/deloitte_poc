@@ -18,15 +18,18 @@ const useCustomers = (id?: number) => {
     setLoading(true);
     try {
       await dispatch(getCustomerList());
+      Promise.resolve();
     } finally {
       setLoading(false);
     }
   };
+
   const getDetail = async () => {
     if (!id) return;
     setLoading(true);
     try {
-      dispatch(getCustomerDetail(id));
+      await dispatch(getCustomerDetail(id));
+      Promise.resolve();
     } finally {
       setLoading(false);
     }
@@ -35,7 +38,8 @@ const useCustomers = (id?: number) => {
   const create = async (customer: ICustomer) => {
     setLoading(true);
     try {
-      dispatch(createCustomer(customer));
+      await dispatch(createCustomer(customer));
+      Promise.resolve();
     } finally {
       setLoading(false);
     }
@@ -44,7 +48,8 @@ const useCustomers = (id?: number) => {
   const edit = async (customer: ICustomer) => {
     setLoading(true);
     try {
-      dispatch(editCustomer(customer));
+      await dispatch(editCustomer(customer));
+      Promise.resolve();
     } finally {
       setLoading(false);
     }
@@ -55,7 +60,8 @@ const useCustomers = (id?: number) => {
     if (!_customerId) return;
     setLoading(true);
     try {
-      dispatch(deleteCustomer(_customerId));
+      await dispatch(deleteCustomer(_customerId));
+      Promise.resolve();
     } finally {
       setLoading(false);
     }

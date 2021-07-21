@@ -48,24 +48,19 @@ const CustomerList = () => {
 
   return (
     <Box mt={5} width="100%">
-      {list?.length > 0 ? (
-        <Grid item xs={12} style={{ maxWidth: '100%' }}>
-          <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="space-between"
+      <Grid item xs={12} style={{ maxWidth: '100%' }}>
+        <Box display="flex" alignItems="center" justifyContent="space-between">
+          <Typography variant="subtitle1">Customer List</Typography>
+          <Button
+            type="button"
+            variant="contained"
+            color="secondary"
+            onClick={handleCreate}
           >
-            <Typography variant="subtitle1">Customer List</Typography>
-            <Button
-              type="button"
-              variant="contained"
-              color="secondary"
-              onClick={handleCreate}
-            >
-              Create
-            </Button>
-          </Box>
-
+            Create
+          </Button>
+        </Box>
+        {list?.length > 0 ? (
           <Table style={{ width: '100%' }}>
             <TableHead>
               <TableRow>
@@ -111,12 +106,12 @@ const CustomerList = () => {
               ))}
             </TableBody>
           </Table>
-        </Grid>
-      ) : (
-        <Typography variant="h6" align="center">
-          No customers found
-        </Typography>
-      )}
+        ) : (
+          <Typography variant="h6" align="center">
+            No customers found
+          </Typography>
+        )}
+      </Grid>
     </Box>
   );
 };
