@@ -4,6 +4,7 @@ import CustomerForm from '../components/CustomerForm';
 import useCustomers from '../../hooks/useCustomers';
 import { ICustomer } from './types/Customer';
 import { useHistory } from 'react-router';
+import Box from '@material-ui/core/Box';
 
 const CustomerCreate = () => {
   const { create } = useCustomers();
@@ -15,10 +16,10 @@ const CustomerCreate = () => {
   };
 
   return (
-    <>
+    <Box mt={5} width="50%" ml="auto" mr="auto">
       <Typography variant="subtitle1">Create customer</Typography>
       <CustomerForm onSubmit={handleSubmit} />
-    </>
+    </Box>
   );
 };
 

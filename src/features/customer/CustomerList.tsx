@@ -3,6 +3,7 @@ import ITableColumn from '../../types/TableColumn';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import TableContainer from '@material-ui/core/TableContainer';
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
@@ -14,6 +15,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import useCustomers from '../../hooks/useCustomers';
 import { Link, useHistory, useRouteMatch } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
 
 const CustomerList = () => {
   const { list, getList, remove } = useCustomers();
@@ -47,18 +49,20 @@ const CustomerList = () => {
   ];
 
   return (
-    <Box mt={5} width="100%">
+    <Box mt={5} width="50%" ml="auto" mr="auto">
       <Grid item xs={12} style={{ maxWidth: '100%' }}>
         <Box display="flex" alignItems="center" justifyContent="space-between">
           <Typography variant="subtitle1">Customer List</Typography>
-          <Button
-            type="button"
-            variant="contained"
-            color="secondary"
-            onClick={handleCreate}
-          >
-            Create
-          </Button>
+          <Box mb={5}>
+            <Button
+              type="button"
+              variant="contained"
+              color="secondary"
+              onClick={handleCreate}
+            >
+              Create
+            </Button>
+          </Box>
         </Box>
         {list?.length > 0 ? (
           <Table style={{ width: '100%' }}>

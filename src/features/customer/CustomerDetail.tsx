@@ -58,14 +58,17 @@ const CustomerDetail = () => {
             </TableBody>
           </Table>
           <Box mt={4}>
-            <Button
-              type="button"
-              variant="contained"
-              color="secondary"
-              onClick={handleEdit}
-            >
-              Edit
-            </Button>
+            <Box component="div" mr={2} display="inline">
+              <Button
+                className="mr-2"
+                type="button"
+                variant="contained"
+                color="secondary"
+                onClick={handleEdit}
+              >
+                Edit
+              </Button>
+            </Box>
             <Button
               type="button"
               variant="contained"
