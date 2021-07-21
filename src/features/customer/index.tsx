@@ -15,7 +15,7 @@ const CustomerPage = () => {
       <Switch>
         <Route exact path={path} component={CustomerList} />
         <Route exact path={`${path}/create`} component={CustomerCreate} />
-        <Route exact path={`${path}/edit`} component={CustomerEdit} />
+        <Route exact path={`${path}/:id/edit`} component={CustomerEdit} />
         <Route exact path={`${path}/:id`} component={CustomerDetail} />
       </Switch>
     </>

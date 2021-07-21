@@ -66,5 +66,7 @@ Sandbox.define('/rest/customers/{id}', 'DELETE', function (req, res) {
     return customer.id !== parseInt(req.params.id);
   });
 
-  res.send(newList);
+  state.customers = newList;
+
+  res.send('Success');
 });

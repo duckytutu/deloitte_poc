@@ -11,19 +11,26 @@ import TableBody from '@material-ui/core/TableBody';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
-import useCustomers from '../../hooks/useCustomer';
-import { Link, useRouteMatch } from 'react-router-dom';
+import useCustomers from '../../hooks/useCustomers';
+import { Link, useHistory, useRouteMatch } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 const CustomerList = () => {
-  const { list, getList, deleteCustomer } = useCustomers();
+  const { list, getList, remove } = useCustomers();
   const { url } = useRouteMatch();
+  const history = useHistory();
 
   useEffect(() => {
     getList();
   }, []);
 
-  const handleDelete = (id: number) => {
-    deleteCustomer(id);
+  const handleDelete = async (id: number) => {
+    await remove(id);
+    await getList();
+  };
+
+  const handleCreate = () => {
+    history.push(`${url}/create`);
   };
 
   const columns: ITableColumn[] = [
@@ -43,7 +50,22 @@ const CustomerList = () => {
     <Box mt={5} width="100%">
       {list?.length > 0 ? (
         <Grid item xs={12} style={{ maxWidth: '100%' }}>
-          <Link to={`${url}/create`}>Create</Link>
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            <Typography variant="subtitle1">Customer List</Typography>
+            <Button
+              type="button"
+              variant="contained"
+              color="secondary"
+              onClick={handleCreate}
+            >
+              Create
+            </Button>
+          </Box>
+
           <Table style={{ width: '100%' }}>
             <TableHead>
               <TableRow>
@@ -76,7 +98,12 @@ const CustomerList = () => {
                         <EditIcon />
                       </IconButton>
                     </Link>
-                    <IconButton color="primary" size="small" aria-label="edit">
+                    <IconButton
+                      color="primary"
+                      size="small"
+                      aria-label="edit"
+                      onClick={() => handleDelete(customer.id)}
+                    >
                       <DeleteIcon />
                     </IconButton>
                   </TableCell>

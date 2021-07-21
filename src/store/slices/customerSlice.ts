@@ -1,9 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import {
-  deleteCustomerById,
-  getAllCustomer,
-  getCustomerById,
-} from '../../apis/customerApis';
+import { remove, getAll, edit, getById, create } from '../../apis/customerApis';
 import { ICustomer } from '../../features/customer/types/Customer';
 
 export interface CustomerState {
@@ -17,25 +13,39 @@ const initialState: CustomerState = {
 };
 
 export const getCustomerList = createAsyncThunk(
-  'customer/getCustomerList',
+  'customer/getList',
   async () => {
-    const { data }: any = await getAllCustomer();
+    const { data }: any = await getAll();
     return data;
   }
 );
 
 export const getCustomerDetail = createAsyncThunk(
-  'customer/getCustomerDetail',
+  'customer/getDetail',
   async (id: number) => {
-    const { data }: any = await getCustomerById(id);
+    const { data }: any = await getById(id);
     return data;
   }
 );
 
+export const createCustomer = createAsyncThunk(
+  'customer/create',
+  async (customer: ICustomer) => {
+    await create(customer);
+  }
+);
+
+export const editCustomer = createAsyncThunk(
+  'customer/edit',
+  async (customer: ICustomer) => {
+    await edit(customer);
+  }
+);
+
 export const deleteCustomer = createAsyncThunk(
-  'customer/deleteCustomer',
+  'customer/delete',
   async (id: number) => {
-    await deleteCustomerById(id);
+    await remove(id);
   }
 );
 
