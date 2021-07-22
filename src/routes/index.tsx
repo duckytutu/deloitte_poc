@@ -10,12 +10,17 @@ import Home from '../features/home/Home';
 import Customer from '../features/customer';
 import AppBreadcrumbs from '../components/AppBreadcrumbs';
 import Box from '@material-ui/core/Box';
+import BackButton from '../components/BackButton';
 
 const Routes = () => {
   return (
     <Router>
       <Box mt={5} width="50%" ml="auto" mr="auto">
-        <AppBreadcrumbs />
+        <Box display="flex" alignItems="center" justifyContent="space-between">
+          <AppBreadcrumbs />
+          <BackButton />
+        </Box>
+
         <Switch>
           <Route exact path="/">
             <Home />

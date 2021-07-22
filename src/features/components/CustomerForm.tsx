@@ -41,7 +41,7 @@ const CustomerForm = ({
           <Box mt={4}>
             <TextField
               name="id"
-              label="Name"
+              label="Id"
               variant="outlined"
               value={formik.values.id}
               onChange={formik.handleChange}
