@@ -1,24 +1,31 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 
-const defaultProps = {
-  defaultVertical: 'top',
-  defaultHorizontal: 'right',
-  defaultMessage: 'success',
-  defaultAutoHide: 2000,
+const DEFAULT_PROPS = {
+  vertical: 'top',
+  horizontal: 'right',
+  message: '',
+  autoHide: 2000,
 };
-const { defaultVertical, defaultHorizontal, defaultMessage, defaultAutoHide } =
-  defaultProps;
 
-function Message(props: any) {
+interface IMessage {
+  handleClose?: any;
+  open: boolean;
+  vertical?: any;
+  horizontal?: any;
+  message: string;
+  autoHide?: number;
+}
+
+const Message = (props: IMessage) => {
   const {
     handleClose,
     open,
-    vertical = defaultVertical,
-    horizontal = defaultHorizontal,
-    message = defaultMessage,
-    autoHide = defaultAutoHide,
+    vertical = DEFAULT_PROPS.vertical,
+    horizontal = DEFAULT_PROPS.horizontal,
+    message = DEFAULT_PROPS.message,
+    autoHide = DEFAULT_PROPS.autoHide,
   } = props;
   return (
     <Snackbar
@@ -34,6 +41,6 @@ function Message(props: any) {
       </Alert>
     </Snackbar>
   );
-}
+};
 
-export default Message;
+export default memo(Message);
