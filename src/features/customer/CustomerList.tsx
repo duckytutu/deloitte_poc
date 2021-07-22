@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ITableColumn from '../../types/TableColumn';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -15,22 +15,44 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import useCustomers from '../../hooks/useCustomers';
 import { Link, useHistory, useRouteMatch } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
+import PopupConfirm from './components/PopupConfirm';
+import Message from './components/Message';
 
 const CustomerList = () => {
   const { list, getList, remove } = useCustomers();
   const { url } = useRouteMatch();
   const history = useHistory();
+  const [openConfirm, setOpenConfirm] = useState(false);
+  const [currentCustomerId, setCurrentCustomerId] = useState(0);
+  const [openMessage, setOpenMessage] = useState(false);
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     getList();
   }, []);
 
-  const handleDelete = async (id: number) => {
-    await remove(id);
+  const handleShowConfirm = (customerId: number) => {
+    setCurrentCustomerId(customerId);
+    setOpenConfirm(true);
+  };
+  const handleCancelConfirm = () => {
+    setCurrentCustomerId(0);
+    setOpenConfirm(false);
+  };
+  const handleDelete = async () => {
+    await remove(currentCustomerId);
+    setOpenConfirm(false);
+    setOpenMessage(true);
+    setMessage('Deleted successful');
     await getList();
   };
 
+  const handleCloseMessage = (event: any, reason: any) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpenMessage(false);
+  };
   const handleCreate = () => {
     history.push(`${url}/create`);
   };
@@ -101,7 +123,7 @@ const CustomerList = () => {
                       color="primary"
                       size="small"
                       aria-label="edit"
-                      onClick={() => handleDelete(customer.id)}
+                      onClick={() => handleShowConfirm(customer.id)}
                     >
                       <DeleteIcon />
                     </IconButton>
@@ -116,6 +138,16 @@ const CustomerList = () => {
           </Typography>
         )}
       </Grid>
+      <PopupConfirm
+        open={openConfirm}
+        handleSubmit={handleDelete}
+        handleCancel={handleCancelConfirm}
+      />
+      <Message
+        open={openMessage}
+        message={message}
+        handleClose={handleCloseMessage}
+      />
     </Box>
   );
 };
