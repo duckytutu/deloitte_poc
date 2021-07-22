@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import useCustomers from '../../hooks/useCustomers';
 import Box from '@material-ui/core/Box';
@@ -19,6 +19,11 @@ const CustomerDetail = () => {
   const [openConfirm, setOpenConfirm] = useState(false);
   const [openMessage, setOpenMessage] = useState(false);
   const [message, setMessage] = useState('');
+
+  const confirmMessage = useMemo(() => {
+    if (!data) return '';
+    return `Are you sure you want to delete customer: ${data.name}`;
+  }, [data]);
 
   const handleShowConfirm = () => {
     setOpenConfirm(true);
@@ -93,6 +98,7 @@ const CustomerDetail = () => {
               open={openConfirm}
               handleCancel={handleCancelConfirm}
               handleSubmit={handleDelete}
+              textContent={confirmMessage}
             />
             <Message open={openMessage} message={message} />
           </Box>

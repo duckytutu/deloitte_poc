@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 
 const DEFAULT_PROPS = {
   textTitle: 'Are you sure ?',
-  textContent: 'Do you want delete',
+  textContent: 'Are you sure you want to delete',
   textOk: 'OK',
   textCancel: 'Cancel',
 };

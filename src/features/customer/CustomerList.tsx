@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import ITableColumn from '../../types/TableColumn';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -17,13 +17,14 @@ import { Link, useHistory, useRouteMatch } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import PopupConfirm from './components/PopupConfirm';
 import Message from './components/Message';
+import { ICustomer } from './types/Customer';
 
 const CustomerList = () => {
   const { list, getList, remove } = useCustomers();
   const { url } = useRouteMatch();
   const history = useHistory();
   const [openConfirm, setOpenConfirm] = useState(false);
-  const [currentCustomerId, setCurrentCustomerId] = useState(0);
+  const [currentCustomer, setCurrentCustomer] = useState<ICustomer | null>();
   const [openMessage, setOpenMessage] = useState(false);
   const [message, setMessage] = useState('');
 
@@ -31,16 +32,21 @@ const CustomerList = () => {
     getList();
   }, []);
 
-  const handleShowConfirm = (customerId: number) => {
-    setCurrentCustomerId(customerId);
+  const confirmMessage = useMemo(() => {
+    if (!currentCustomer) return '';
+    return `Are you sure you want to delete customer: ${currentCustomer.name}`;
+  }, [currentCustomer]);
+
+  const handleShowConfirm = (customer: ICustomer) => {
+    setCurrentCustomer(customer);
     setOpenConfirm(true);
   };
   const handleCancelConfirm = () => {
-    setCurrentCustomerId(0);
+    setCurrentCustomer(null);
     setOpenConfirm(false);
   };
   const handleDelete = async () => {
-    await remove(currentCustomerId);
+    await remove(currentCustomer);
     setOpenConfirm(false);
     setOpenMessage(true);
     setMessage('Deleted successful');
@@ -123,7 +129,7 @@ const CustomerList = () => {
                       color="primary"
                       size="small"
                       aria-label="edit"
-                      onClick={() => handleShowConfirm(customer.id)}
+                      onClick={() => handleShowConfirm(customer)}
                     >
                       <DeleteIcon />
                     </IconButton>
@@ -142,6 +148,7 @@ const CustomerList = () => {
         open={openConfirm}
         handleSubmit={handleDelete}
         handleCancel={handleCancelConfirm}
+        textContent={confirmMessage}
       />
       <Message
         open={openMessage}
