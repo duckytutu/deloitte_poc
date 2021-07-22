@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import { Box, Button, TextField } from '@material-ui/core';
-import { ICustomer } from '../customer/types/Customer';
+import { ICustomer } from '../types/Customer';
 import * as Yup from 'yup';
 import { useHistory } from 'react-router-dom';
 

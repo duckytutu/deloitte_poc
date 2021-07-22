@@ -41,12 +41,15 @@ const CustomerList = () => {
     setCurrentCustomer(customer);
     setOpenConfirm(true);
   };
+
   const handleCancelConfirm = () => {
     setCurrentCustomer(null);
     setOpenConfirm(false);
   };
+
   const handleDelete = async () => {
-    await remove(currentCustomer);
+    if (!currentCustomer) return;
+    await remove(currentCustomer.id);
     setOpenConfirm(false);
     setOpenMessage(true);
     setMessage('Deleted successful');
