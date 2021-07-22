@@ -2,7 +2,7 @@ import Typography from '@material-ui/core/Typography';
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router';
 import useCustomers from '../../hooks/useCustomers';
-import CustomerForm from '../components/CustomerForm';
+import CustomerForm from './components/CustomerForm';
 import { ICustomer } from './types/Customer';
 import Box from '@material-ui/core/Box';
 import Message from './components/Message';

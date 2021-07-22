@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
-import CustomerForm from '../components/CustomerForm';
+import CustomerForm from './components/CustomerForm';
 import useCustomers from '../../hooks/useCustomers';
 import { ICustomer } from './types/Customer';
 import { useHistory } from 'react-router';
