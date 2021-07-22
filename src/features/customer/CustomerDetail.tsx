@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import useCustomers from '../../hooks/useCustomers';
 import Box from '@material-ui/core/Box';
@@ -9,13 +9,26 @@ import { useEffect } from 'react';
 import Table from '@material-ui/core/Table';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import PopupConfirm from './components/PopupConfirm';
+import Message from './components/Message';
 
 const CustomerDetail = () => {
   const { id }: any = useParams();
   const history = useHistory();
   const { current: data, getDetail, remove } = useCustomers(id);
+  const [openConfirm, setOpenConfirm] = useState(false);
+  const [openMessage, setOpenMessage] = useState(false);
+  const [message, setMessage] = useState('');
+
+  const handleShowConfirm = () => {
+    setOpenConfirm(true);
+  };
+  const handleCancelConfirm = () => {
+    setOpenConfirm(false);
+  };
 
   const handleDelete = async () => {
+    setOpenConfirm(false);
     await remove(id);
     history.push('/customers');
   };
@@ -72,10 +85,16 @@ const CustomerDetail = () => {
               type="button"
               variant="contained"
               color="secondary"
-              onClick={handleDelete}
+              onClick={handleShowConfirm}
             >
               Delete
             </Button>
+            <PopupConfirm
+              open={openConfirm}
+              handleCancel={handleCancelConfirm}
+              handleSubmit={handleDelete}
+            />
+            <Message open={openMessage} message={message} />
           </Box>
         </>
       ) : (
