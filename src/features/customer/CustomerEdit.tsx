@@ -5,7 +5,7 @@ import useCustomers from '../../hooks/useCustomers';
 import CustomerForm from './components/CustomerForm';
 import { ICustomer } from './types/Customer';
 import Box from '@material-ui/core/Box';
-import Message from './components/Message';
+import Message from '../../components/Message';
 
 const CustomerEdit = () => {
   const { id }: any = useParams();

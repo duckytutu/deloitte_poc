@@ -9,8 +9,8 @@ import { useEffect } from 'react';
 import Table from '@material-ui/core/Table';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import PopupConfirm from './components/PopupConfirm';
-import Message from './components/Message';
+import PopupConfirm from '../../components/PopupConfirm';
+import Message from '../../components/Message';
 
 const CustomerDetail = () => {
   const { id }: any = useParams();
