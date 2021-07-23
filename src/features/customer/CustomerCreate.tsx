@@ -5,7 +5,7 @@ import useCustomers from '../../hooks/useCustomers';
 import { ICustomer } from './types/Customer';
 import { useHistory } from 'react-router';
 import Box from '@material-ui/core/Box';
-import Message from './components/Message';
+import Message from '../../components/Message';
 
 const CustomerCreate = () => {
   const { create } = useCustomers();

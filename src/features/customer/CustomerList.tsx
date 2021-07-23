@@ -15,8 +15,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import useCustomers from '../../hooks/useCustomers';
 import { Link, useHistory, useRouteMatch } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-import PopupConfirm from './components/PopupConfirm';
-import Message from './components/Message';
+import PopupConfirm from '../../components/PopupConfirm';
+import Message from '../../components/Message';
 import { ICustomer } from './types/Customer';
 
 const CustomerList = () => {
