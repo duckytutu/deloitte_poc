@@ -18,9 +18,10 @@ import Button from '@material-ui/core/Button';
 import PopupConfirm from './components/PopupConfirm';
 import Message from './components/Message';
 import { ICustomer } from './types/Customer';
+import Circular from './components/Circular';
 
 const CustomerList = () => {
-  const { list, getList, remove } = useCustomers();
+  const { loading, list, getList, remove } = useCustomers();
   const { url } = useRouteMatch();
   const history = useHistory();
   const [openConfirm, setOpenConfirm] = useState(false);
@@ -92,56 +93,64 @@ const CustomerList = () => {
             </Button>
           </Box>
         </Box>
-        {list?.length > 0 ? (
-          <Table style={{ width: '100%' }}>
-            <TableHead>
-              <TableRow>
-                {columns.map((column: ITableColumn) => (
-                  <TableCell
-                    key={column.id}
-                    align={column.align}
-                    style={{ minWidth: column.minWidth }}
-                  >
-                    {column.label}
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {list.map((customer: any) => (
-                <TableRow key={customer.id}>
-                  <TableCell>{customer.id}</TableCell>
-                  <TableCell>{customer.name}</TableCell>
-                  <TableCell>{customer.address}</TableCell>
-                  <TableCell>{customer.occupation}</TableCell>
-                  <TableCell>{customer.income}</TableCell>
-                  <TableCell>
-                    <Link to={`${url}/${customer.id}`}>
-                      <IconButton
-                        color="primary"
-                        size="small"
-                        aria-label="edit"
-                      >
-                        <EditIcon />
-                      </IconButton>
-                    </Link>
-                    <IconButton
-                      color="primary"
-                      size="small"
-                      aria-label="edit"
-                      onClick={() => handleShowConfirm(customer)}
-                    >
-                      <DeleteIcon />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+        {loading ? (
+          <Box display="flex" justifyContent="center" alignItems="center">
+            <Circular />
+          </Box>
         ) : (
-          <Typography variant="h6" align="center">
-            No customers found
-          </Typography>
+          <>
+            {list?.length > 0 ? (
+              <Table style={{ width: '100%' }}>
+                <TableHead>
+                  <TableRow>
+                    {columns.map((column: ITableColumn) => (
+                      <TableCell
+                        key={column.id}
+                        align={column.align}
+                        style={{ minWidth: column.minWidth }}
+                      >
+                        {column.label}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {list.map((customer: any) => (
+                    <TableRow key={customer.id}>
+                      <TableCell>{customer.id}</TableCell>
+                      <TableCell>{customer.name}</TableCell>
+                      <TableCell>{customer.address}</TableCell>
+                      <TableCell>{customer.occupation}</TableCell>
+                      <TableCell>{customer.income}</TableCell>
+                      <TableCell>
+                        <Link to={`${url}/${customer.id}`}>
+                          <IconButton
+                            color="primary"
+                            size="small"
+                            aria-label="edit"
+                          >
+                            <EditIcon />
+                          </IconButton>
+                        </Link>
+                        <IconButton
+                          color="primary"
+                          size="small"
+                          aria-label="edit"
+                          onClick={() => handleShowConfirm(customer)}
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            ) : (
+              <Typography variant="h6" align="center">
+                No customers found
+              </Typography>
+            )}
+          </>
         )}
       </Grid>
       <PopupConfirm
